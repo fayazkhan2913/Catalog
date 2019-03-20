@@ -1,0 +1,49 @@
+{% include 'nav.html' %}
+<div class="main">
+{% block content %}
+{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	        <div class="alert alert-success alert-dismissable animated fadeIn">
+	            {% for message in messages %}
+	            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+	            <p class="h4"><strong>{{ message }}</strong></p>
+	            {% endfor %}
+	        </div>
+	{% endif %}	    
+{% endwith %}
+{% if 'username' in session %}
+<button type="button" class="btn btn-warning" style="margin: 5px 0px 5px 25px;">
+<a href="{{url_for('addMovie',mbname=mbs.name)}}" style="text-decoration: none;">
+<strong>Add New Movie</strong></a></button>
+
+{% endif %}
+<div class="row" style="margin: 10px;">
+{% for ssm in ssmb %}
+
+	<div class="col-sm-4 text-center" style="width:340px">
+		<div class="panel panel-primary" style="background-color:aqua;border:none">
+			<div class="panel-heading" style="background-color:blue;">
+				<h4>{{ ssm.name }}</h4>
+			</div>
+			<div class="panel-body text-center">
+				<table>
+					<tr><th>POSTER</th><td>:</td><td><img src="{{ ssm.poster }}" width="170" height="175"></td></tr></td></tr>
+					<tr><th>RELEASEYEAR</th><td>:</td><td><h5>{{ ssm.year }}</h5></td></tr>
+					<tr><th>RATING</th><td>:</td><td><h5>{{ ssm.rating }}</h5></td></tr>
+					<tr><th>BUDGET</th><td>:</td><td><h5>{{ ssm.budget }}</h5></td></tr>
+					<tr><th>GROSS</th><td>:</td><td><h5>{{ ssm.gross }}</h5></td></tr>
+				</table>
+			</div>
+			{% if 'username' in session %}
+			<div class="panel-footer" style="background-color:teal;">
+					<button type="button" class="btn btn-info"><a href="{{ url_for('editMovie',mbid=mbs.id,ssmname=ssm.name) }}"style="text-decoration: none;color:white;">EDIT</a></button>
+					<button type="button" class="btn btn-danger"><a href="{{ url_for('deleteMovie',mbid=mbs.id,ssmname=ssm.name)}}"style="text-decoration: none;color:white;">DELETE</a></button>
+			</div>
+			{% endif %}	
+			
+		</div>
+	</div>
+{% endfor %}
+</div>
+{% endblock content %}
+</div>

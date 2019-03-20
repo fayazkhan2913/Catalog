@@ -1,0 +1,45 @@
+{% include 'nav.html' %}
+<div class="main">
+{% block content %}
+
+<div class="">
+		<div class="mr-sm-2 mb-2 col-sm-8" style="margin: 10px;">
+			<form action="{{ url_for('addMovie',mbname=mbname)}}" method="POST">
+				<div class="panel panel-primary">
+				  <div class="panel-heading bg-success">Add Movie</div>
+				  <div class="panel-body">
+				  	
+					  <div class="form-group">
+					  	<label class="text-primary" for="poster">Enter Movie Poster Link:</label>
+					    <input type="text" class="form-control" name="poster" placeholder="Enter Movie Poster Link:" pattern="https?://.+" title="Allow Link Only" required>
+					  </div>
+					  <div class="form-group">
+					  	<label class="text-primary" for="name">Enter Movie Name:</label>
+					    <input type="name" class="form-control" name="name" placeholder="Enter Movie Name:" pattern="[A-Za-z0-9 ]{1,}" title="Allow Numbers and Characters Only" required>
+					  </div>
+					  <div class="form-group">
+					  	<label class="text-primary" for="year">Enter Released Year:</label>
+					    <input type="text" class="form-control" name="year" placeholder="Enter Released year:" pattern="[0-9 ]{1,}" title="Allow Numbers Only" required>
+					  </div>
+					  <div class="form-group">
+					  	<label class="text-primary" for="rating">Enter Movie Rating:</label>
+					    <input type="text" class="form-control" name="rating" placeholder="Enter Movie Rating:" pattern="[0-9,. ]{1,}" title="Allow both Characters and Numbers only " required>
+					  </div>
+					  <div class="form-group">
+					  	<label class="text-primary" for="budget">Enter Budget:</label>
+					    <input type="text" class="form-control" name="budget" placeholder="Enter Budget:" pattern="[A-Za-z0-9,.]{1,}" title="Allow Numbers Only" required>
+					  </div>
+					  <div class="form-group">
+					  	<label class="text-primary" for="gross">Enter Gross:</label>
+					    <input type="text" class="form-control" name="gross" placeholder="Enter Gross:" pattern="[A-Za-z0-9,.]{1,}" title="Allow Numbers Only" required>
+					  </div>
+					  <div class="form-group">
+					    <input type="text" class="form-control " name="moviegenreid" value="{{ mbname }}" readonly>
+					  </div>
+				  </div> 
+				  <div class="panel-footer text-center"><input type="submit" class="btn btn-primary" value="Submit"></div>
+				</div>
+				</form>
+			</div>
+</div>
+{% endblock content %}

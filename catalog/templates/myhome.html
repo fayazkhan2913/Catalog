@@ -1,0 +1,58 @@
+<head>
+<title>MOVIE ZONE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+.mySlides {display:none;}
+</style>
+</head>
+
+{% include 'nav.html' %}
+<div class="main">
+{% block content %}
+  <!-- {% for tb in tbs_cat %}
+    <a href="{{ url_for('showMovies',tbid=tb.id)}}">{{tb.name}}</a><br>
+    {% endfor %} -->
+    {% with messages = get_flashed_messages() %}
+	    {% if messages %}
+	        <div class="alert alert-success alert-dismissable animated fadeIn">
+	            {% for message in messages %}
+	            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+	            <p class="h4"><strong>{{ message }}</strong></p>
+	            {% endfor %}
+	        </div>
+	    {% endif %}
+	{% endwith %}
+	
+	<center>
+	<div class="w3-content w3-section" style="max-width:1000px">
+  <img class="mySlides" src="https://moviezoneweb.files.wordpress.com/2016/04/new-logo.png?w=400" width="750px" height="500px" style="border-radius:40px;margin-top:20px">
+  <img class="mySlides" src="https://i.imgur.com/coUQtBy.jpg" width="750px" height="500px" style="border-radius:40px;margin-top:20px">
+  <img class="mySlides" src="https://www.wallpaperup.com/uploads/wallpapers/2015/11/26/843293/e6d7a3f2941021c37f7a61eb1b3b3eff.jpg" width="750px" height="500px" style="border-radius:40px;margin-top:20px"><br>
+  </center>
+  <marquee direction="ltr" onmouseover="this.stop();" onmouseout="this.start();">
+		<font size="4" color="black">Copyright&copy; 2019, All Rights Reserved
+		</font>
+  </marquee>
+	</div>
+	
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 2000); // Change image every 2 seconds
+}
+</script>
+    
+{% endblock content %}
+</div>
